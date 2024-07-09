@@ -11,6 +11,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Run script.sh
-        run: ./script.sh
+        shell: bash
+        env:
+          SUPER_SECRET: ${{ secrets.SUPER_SECRET }}
+        run: |
+          ./script.sh "$SUPER_SECRET"
