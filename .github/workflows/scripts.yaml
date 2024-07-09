@@ -1,0 +1,16 @@
+name: Run Scripts on Dev Push and Main Merge
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  run-scripts:
+    name: Run Scripts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run script.sh
+        run: ./script.sh
