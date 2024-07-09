@@ -3,7 +3,7 @@ name: Run Scripts on Dev Push and Main Merge
 on:
   push:
     branches:
-      - main
+      - master
 jobs:
   run-scripts:
     name: Run Scripts
