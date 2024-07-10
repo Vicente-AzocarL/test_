@@ -1,19 +1,28 @@
-name: Run Scripts on Dev Push and Main Merge
-
-on:
-  push:
-    branches:
-      - master
-jobs:
-  run-scripts:
-    name: Run Scripts
-    runs-on: ubuntu-latest
-    steps:
+DEV:
+  runs-on: ubuntu-latest
+  environment: 
+    name: DEV
+  steps:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Run script.sh
         shell: bash
         env:
-          SUPER_SECRET: ${{ secrets.SUPER_SECRET }}
+          SUPER_SECRET: ${{ variables.VAR }}
+        run: |
+          ./script.sh "$SUPER_SECRET"
+
+PROD:
+  needs: [DEV]
+  runs-on: ubuntu-latest
+  environment:
+    name: PROD
+  steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run script.sh
+        shell: bash
+        env:
+          SUPER_SECRET: ${{ variables.VAR }}
         run: |
           ./script.sh "$SUPER_SECRET"
