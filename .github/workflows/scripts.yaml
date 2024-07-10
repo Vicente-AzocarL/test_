@@ -12,7 +12,7 @@ jobs:
         - name: Run script.sh
           shell: bash
           run: |
-            ./script.sh "${{ env.VAR }}"
+            ./script.sh "${{ vars.VAR }}"
   
   PROD:
     needs: [DEV]
@@ -25,4 +25,4 @@ jobs:
         - name: Run script.sh
           shell: bash
           run: |
-            ./script.sh "${{ env.VAR }}"
+            ./script.sh "${{ vars.VAR }}"
