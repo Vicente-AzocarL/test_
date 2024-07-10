@@ -1,28 +1,32 @@
-DEV:
-  runs-on: ubuntu-latest
-  environment: 
-    name: DEV
-  steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Run script.sh
-        shell: bash
-        env:
-          SUPER_SECRET: ${{ variables.VAR }}
-        run: |
-          ./script.sh "$SUPER_SECRET"
+name: environment test
+on: push
 
-PROD:
-  needs: [DEV]
-  runs-on: ubuntu-latest
-  environment:
-    name: PROD
-  steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Run script.sh
-        shell: bash
-        env:
-          SUPER_SECRET: ${{ variables.VAR }}
-        run: |
-          ./script.sh "$SUPER_SECRET"
+jobs:
+  DEV:
+    runs-on: ubuntu-latest
+    environment: 
+      name: DEV
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+        - name: Run script.sh
+          shell: bash
+          env:
+            SUPER_SECRET: ${{ variables.VAR }}
+          run: |
+            ./script.sh "$SUPER_SECRET"
+  
+  PROD:
+    needs: [DEV]
+    runs-on: ubuntu-latest
+    environment:
+      name: PROD
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+        - name: Run script.sh
+          shell: bash
+          env:
+            SUPER_SECRET: ${{ variables.VAR }}
+          run: |
+            ./script.sh "$SUPER_SECRET"
