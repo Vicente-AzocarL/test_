@@ -12,7 +12,7 @@ jobs:
         - name: Run script.sh
           shell: bash
           env:
-            SUPER_SECRET: ${{ variables.VAR }}
+            SUPER_SECRET: ${{ env.VAR }}
           run: |
             ./script.sh "$SUPER_SECRET"
   
@@ -27,6 +27,6 @@ jobs:
         - name: Run script.sh
           shell: bash
           env:
-            SUPER_SECRET: ${{ variables.VAR }}
+            SUPER_SECRET: ${{ env.VAR }}
           run: |
             ./script.sh "$SUPER_SECRET"
